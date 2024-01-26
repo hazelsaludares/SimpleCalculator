@@ -1,0 +1,86 @@
+using System;
+
+namespace SimpleCalculator
+{
+    class Calculator
+    {
+        static void Main(string[] args)
+        {
+            string value;
+
+            do
+            {
+                Console.WriteLine("-----------------");
+                Console.WriteLine("Simple Calculator");
+                Console.WriteLine("-----------------");
+
+                Console.Write("Enter the first number: ");
+                string firstNumString = Console.ReadLine();
+                double firstNum;
+                bool isNum = double.TryParse(firstNumString, out firstNum);
+
+                Console.Write("Enter the second number: ");
+                string secondNumString = Console.ReadLine();
+                double secondNum;
+                bool isNum2 = double.TryParse(secondNumString, out secondNum);
+
+                if (isNum && isNum2)
+                {
+                    Console.WriteLine("\nChoose an operation:");
+                    Console.WriteLine("1. Addition");
+                    Console.WriteLine("2. Subtraction");
+                    Console.WriteLine("3. Multiplication");
+                    Console.WriteLine("4. Division");
+
+                    Console.Write("Enter the operation number (1-4): ");
+                    int ops = Int32.Parse(Console.ReadLine());
+
+                    double res;
+                    if (ops == 1)
+                    {
+                        res = firstNum + secondNum;
+                        Console.WriteLine("\nResult of Addition = {0}", res);
+                    }
+                    else if (ops == 2)
+                    {
+                        res = firstNum - secondNum;
+                        Console.WriteLine("\nResult of Subtraction = {0}", res);
+                    }
+                    else if (ops == 3)
+                    {
+                        res = firstNum * secondNum;
+                        Console.WriteLine("\nResult of Multiplication = {0}", res);
+
+                    }
+                    else if (ops == 4)
+                    {
+                        if (firstNum == 0 || secondNum == 0)
+                        {
+                            Console.WriteLine("\nCannot be divided by 0");
+                        }
+
+                        else
+                        {
+                            res = firstNum / secondNum;
+                            Console.WriteLine("\nResult of Division = {0}", res);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nInvalid Selection");
+                    }
+                }
+
+                else
+                {
+                    Console.WriteLine("\nIncorrect input, First and Second Number should be an integer.");
+                }
+
+                Console.WriteLine("\nDo you wish to continue (y/n)?");
+                value = Console.ReadLine();
+            }
+
+            while (value == "y" || value == "Y");
+        }
+    }
+}
